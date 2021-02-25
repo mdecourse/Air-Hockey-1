@@ -35,12 +35,12 @@ def create_score(c,p):
     pickle.dump([c,p],scorefile)
     scorefile.close()
     scorefile=open('Scores.dat','rb+')
-    print "\n PAST SCORES\n"
-    print "COMPUTER","\t"*3,"PLAYER"
+    print("\n PAST SCORES\n")
+    print("COMPUTER","\t"*3,"PLAYER")
     while True:
         try:        
             score=pickle.load(scorefile)
-            print score[0],"\t"*4,score[1]
+            print(score[0],"\t"*4,score[1])
         except EOFError:            
             scorefile.close()
             break
@@ -67,12 +67,12 @@ def homescreen(c,p):
     if c >=5:
         cpuwin=font4.render("YOU LOSE",True,white)
         screen.blit(cpuwin,(150,250))
-	create_score(c,p)
+        create_score(c,p)
         pygame.display.flip()
     if p >=5:
         cpuwin=font4.render("YOU WIN",True,white)
         screen.blit(cpuwin,(150,250))
-	create_score(c,p)
+        create_score(c,p)
         pygame.display.flip()
     playerScore=0
     cpuScore=0
@@ -276,7 +276,7 @@ while pause==False:
             sys.exit()
         if event.type==pygame.KEYDOWN:
             if event.key == pygame.K_r:
-                print "Game reset..."
+                print("Game reset...")
                 cpuScore=0
                 playerScore=0
                 puck1.reset()
@@ -313,28 +313,28 @@ while pause==False:
 
     #Scoring a goal           
     if (abs(lowerGoal.centre_y-puck1.y)<=50 and abs(lowerGoal.centre_x-puck1.x)<=50):
-        print "Computer Scores!"
+        print("Computer Scores!")
         cpuScore+=1
-        print "User:", playerScore,"Computer:",cpuScore
+        print("User:", playerScore,"Computer:",cpuScore)
         
         if cpuScore==5:
             c=cpuScore
             p=playerScore
             playerScore=0
             cpuScore=0
-            print "\nComputer Wins!"
+            print("\nComputer Wins!")
                         
             homescreen(c,p)
         puck1.reset()
         upperMallet.reset_Mallet()
                 
     if (abs(upperGoal.centre_y-puck1.y)<=5 and abs(upperGoal.centre_x-puck1.x)<=40):
-        print "User Scores!"
+        print("User Scores!")
         playerScore += 1
-        print "User:", playerScore,"Computer:", cpuScore
+        print("User:", playerScore,"Computer:", cpuScore)
               
         if playerScore==5:           
-            print "\nYou Win!"
+            print("\nYou Win!")
             c=cpuScore
             p=playerScore
             playerScore=0
